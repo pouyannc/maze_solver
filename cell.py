@@ -1,19 +1,24 @@
 from graphics import *
 
 class Cell:
-    def __init__(self, x1, x2, y1, y2, window, **kwargs):
-        self.has_left_wall = kwargs['has_left_wall']
-        self.has_right_wall = kwargs['has_right_wall']
-        self.has_top_wall = kwargs['has_top_wall']
-        self.has_bottom_wall = kwargs['has_bottom_wall']
+    def __init__(self, window = None):
+        self.has_left_wall = True
+        self.has_right_wall = True
+        self.has_top_wall = True
+        self.has_bottom_wall = True
+        self._x1 = None
+        self._x2 = None
+        self._y1 = None
+        self._y2 = None
+        self._win = window
+
+    def draw(self, x1, x2, y1, y2):
+        fill_color = "black"
+
         self._x1 = x1
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
-        self._win = window
-
-    def draw(self):
-        fill_color = "black"
 
         ptl = Point(self._x1, self._y1)
         ptr = Point(self._x2, self._y1)
