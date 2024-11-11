@@ -13,6 +13,9 @@ class Cell:
         self._win = window
 
     def draw(self, x1, x2, y1, y2):
+        if self._win is None:
+            return
+
         fill_color = "black"
 
         self._x1 = x1
