@@ -10,6 +10,7 @@ class Cell:
         self._x2 = None
         self._y1 = None
         self._y2 = None
+        self.visited = False
         self._win = window
 
     def draw(self, x1, x2, y1, y2):
@@ -28,14 +29,19 @@ class Cell:
         pbl = Point(self._x1, self._y2)
         pbr = Point(self._x2, self._y2)
 
-        if self.has_left_wall:
-            self._win.draw_line(Line(ptl, pbl), fill_color)
-        if self.has_right_wall:
-            self._win.draw_line(Line(ptr, pbr), fill_color)
-        if self.has_top_wall:
-            self._win.draw_line(Line(ptl, ptr), fill_color)
-        if self.has_bottom_wall:
-            self._win.draw_line(Line(pbl, pbr), fill_color)
+        self._win.draw_line(Line(ptl, pbl), fill_color)
+        self._win.draw_line(Line(ptr, pbr), fill_color)
+        self._win.draw_line(Line(ptl, ptr), fill_color)
+        self._win.draw_line(Line(pbl, pbr), fill_color)
+
+        if not self.has_left_wall:
+            self._win.draw_line(Line(ptl, pbl), "white")
+        if not self.has_right_wall:
+            self._win.draw_line(Line(ptr, pbr), "white")
+        if not self.has_top_wall:
+            self._win.draw_line(Line(ptl, ptr), "white")
+        if not self.has_bottom_wall:
+            self._win.draw_line(Line(pbl, pbr), "white")
     
     def draw_move(self, to_cell, undo=False):
         p1x = (self._x1 + self._x2) / 2
