@@ -50,8 +50,8 @@ class Cell:
         p2y = (to_cell._y1 + to_cell._y2) / 2
 
         if undo:
-            fill_color = "red"
-        else:
             fill_color = "gray"
+        else:
+            fill_color = "red"
 
         self._win.draw_line(Line(Point(p1x, p1y), Point(p2x, p2y)), fill_color)
