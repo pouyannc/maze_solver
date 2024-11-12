@@ -18,6 +18,7 @@ class Maze:
         self._create_cells()
         self._break_entrance_and_exit()
         self._break_wall_r(0, 0)
+        self._reset_cells_visited()
     
     def _create_cells(self):
         # self._cells = [[Cell(self._win) for j in range(self._num_rows)] for i in range(self._num_cols)]
@@ -46,7 +47,6 @@ class Maze:
                 to_visit.append((i, j-1))
             if j < self._num_rows - 1 and not self._cells[i][j+1].visited:
                 to_visit.append((i, j+1))
-            print(to_visit)
             if not to_visit:
                 return
             visit = random.sample(to_visit, 1)[0]
@@ -83,3 +83,8 @@ class Maze:
             return
         self._win.redraw()
         time.sleep(0.1)
+
+    def _reset_cells_visited(self):
+        for i in range(self._num_cols):
+            for j in range(self._num_rows):
+                self._cells[i][j].visited = False
